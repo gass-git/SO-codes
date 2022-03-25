@@ -29,7 +29,7 @@ const mockedList = [
   }
 ]
 
-// SOLUTION
+// SOLUTION ONE - using a loop
 
 let newList = {}
 
@@ -51,3 +51,25 @@ const newMockedList = newListKeys.map((key) => {
 })
 
 console.log(newMockedList)
+
+// SOLUTION TWO - using reduce()
+
+let initialObj = {}
+
+let newMockedList_2 = mockedList.reduce((prev, curr) => {
+
+  // if key does not exist in obj, create object 
+  if (!prev[curr.email]) prev[curr.email] = { email: curr.email, languages: [] }
+
+  // add item to languages array in objects key [curr.email]
+  prev[curr.email].languages.push(curr)
+
+  return prev
+
+}, initialObj)
+
+// remove keys and just show objects values
+
+newMockedList_2 = Object.values(newMockedList_2)
+
+console.log(newMockedList_2)
